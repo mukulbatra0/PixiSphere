@@ -1,10 +1,10 @@
-import { redirect } from 'next/navigation';
+import { redirect } from "next/navigation";
 import Image from "next/image";
 
 export default function Home() {
   // Redirect to category page
-  redirect('/category');
-  
+  redirect("/category");
+
   // The code below will never execute because of the redirect
   // but we'll keep it commented for reference
   /*

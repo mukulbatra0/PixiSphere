@@ -1,12 +1,12 @@
-import React from 'react';
-import { usePhotographerStore } from '@/store';
-import StarRating from '../ui/StarRating';
+import React from "react";
+import { usePhotographerStore } from "@/store";
+import StarRating from "../ui/StarRating";
 
 const RatingFilter: React.FC = () => {
   const { filters, setFilter } = usePhotographerStore();
-  
+
   const ratings = [4, 3, 2, 1];
-  
+
   return (
     <div>
       <h3 className="font-medium mb-2 text-black">Rating</h3>
@@ -18,10 +18,13 @@ const RatingFilter: React.FC = () => {
               id={`rating-${rating}`}
               name="rating"
               checked={filters.minRating === rating}
-              onChange={() => setFilter('minRating', rating)}
+              onChange={() => setFilter("minRating", rating)}
               className="mr-2"
             />
-            <label htmlFor={`rating-${rating}`} className="flex items-center cursor-pointer">
+            <label
+              htmlFor={`rating-${rating}`}
+              className="flex items-center cursor-pointer"
+            >
               <StarRating rating={rating} />
               <span className="ml-1 text-sm text-black">& up</span>
             </label>
@@ -33,10 +36,13 @@ const RatingFilter: React.FC = () => {
             id="rating-all"
             name="rating"
             checked={filters.minRating === 0}
-            onChange={() => setFilter('minRating', 0)}
+            onChange={() => setFilter("minRating", 0)}
             className="mr-2"
           />
-          <label htmlFor="rating-all" className="text-sm text-black cursor-pointer">
+          <label
+            htmlFor="rating-all"
+            className="text-sm text-black cursor-pointer"
+          >
             All Ratings
           </label>
         </div>

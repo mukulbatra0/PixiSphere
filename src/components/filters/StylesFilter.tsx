@@ -1,20 +1,23 @@
-import React from 'react';
-import { usePhotographerStore } from '@/store';
+import React from "react";
+import { usePhotographerStore } from "@/store";
 
 const StylesFilter: React.FC = () => {
   const { filters, setFilter } = usePhotographerStore();
-  
-  const styles = ['Traditional', 'Candid', 'Studio', 'Outdoor', 'Indoor'];
-  
+
+  const styles = ["Traditional", "Candid", "Studio", "Outdoor", "Indoor"];
+
   const handleStyleChange = (style: string) => {
     const currentStyles = [...filters.styles];
     if (currentStyles.includes(style)) {
-      setFilter('styles', currentStyles.filter(s => s !== style));
+      setFilter(
+        "styles",
+        currentStyles.filter((s) => s !== style)
+      );
     } else {
-      setFilter('styles', [...currentStyles, style]);
+      setFilter("styles", [...currentStyles, style]);
     }
   };
-  
+
   return (
     <div>
       <h3 className="font-medium mb-2 text-black">Styles</h3>
@@ -28,7 +31,10 @@ const StylesFilter: React.FC = () => {
               onChange={() => handleStyleChange(style)}
               className="mr-2"
             />
-            <label htmlFor={`style-${style}`} className="text-sm text-black cursor-pointer">
+            <label
+              htmlFor={`style-${style}`}
+              className="text-sm text-black cursor-pointer"
+            >
               {style}
             </label>
           </div>

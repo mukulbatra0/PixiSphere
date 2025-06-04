@@ -14,7 +14,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Pixisphere - Find the Perfect Photographer",
-  description: "Discover and book the best photographers for your special moments",
+  description:
+    "Discover and book the best photographers for your special moments",
 };
 
 export default function RootLayout({

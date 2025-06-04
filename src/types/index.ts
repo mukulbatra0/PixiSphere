@@ -19,7 +19,7 @@ export interface Photographer {
   reviews: Review[];
 }
 
-export type SortOption = 'price-low' | 'price-high' | 'rating' | 'recent';
+export type SortOption = "price-low" | "price-high" | "rating" | "recent";
 
 export interface FilterState {
   priceRange: [number, number];

@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Pixisphere
+
+Pixisphere is a Next.js web application for discovering and booking the best photographers for your special moments. It features a modern UI, advanced filtering, and a mock API for development and testing.
+
+## Features
+- Browse a curated list of photographers with ratings, locations, and styles
+- Filter by price, rating, style, and city
+- Search by name, location, or tags
+- View detailed photographer profiles with portfolios and reviews
+- Responsive, mobile-friendly design
+- Mock API using `json-server` for local development
+- Uses local stock images for demonstration
 
 ## Getting Started
 
-First, run the development server:
-
+### 1. Install dependencies
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Start the mock API server
+```bash
+npm run json-server
+```
+This will start a local API at [http://localhost:3001/photographers](http://localhost:3001/photographers).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Start the Next.js development server
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
 
-## Learn More
+## Project Structure
+```
+├── public/
+│   ├── images/                # Stock and profile images for photographers
+│   └── ...                    # Static assets (SVGs, favicon, etc.)
+├── src/
+│   ├── app/                   # Next.js app directory (routing, layout, pages)
+│   ├── components/            # React components (cards, filters, UI)
+│   ├── store/                 # Zustand state management
+│   └── types/                 # TypeScript type definitions
+├── db.json                    # Mock API data for photographers
+├── package.json               # Project metadata and scripts
+└── ...
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Mock API
+- The app uses `json-server` to serve mock photographer data from `db.json`.
+- Images referenced in the API are stored in `public/images/`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
+- `npm run dev` – Start the Next.js development server
+- `npm run build` – Build the app for production
+- `npm run start` – Start the production server
+- `npm run lint` – Run ESLint
+- `npm run json-server` – Start the mock API server
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Tech Stack
+- [Next.js 15](https://nextjs.org/)
+- [React 19](https://react.dev/)
+- [Zustand](https://zustand-demo.pmnd.rs/)
+- [Framer Motion](https://www.framer.com/motion/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [json-server](https://github.com/typicode/json-server)
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## License
+This project is for educational/demo purposes only. All images are from free stock sources (Unsplash, etc.).
