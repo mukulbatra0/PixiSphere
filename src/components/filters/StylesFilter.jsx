@@ -1,12 +1,12 @@
 import React from "react";
-import { usePhotographerStore } from "@/store";
+import { usePhotographerStore } from "../../store/index.js";
 
-const StylesFilter: React.FC = () => {
+const StylesFilter = () => {
   const { filters, setFilter } = usePhotographerStore();
 
   const styles = ["Traditional", "Candid", "Studio", "Outdoor", "Indoor"];
 
-  const handleStyleChange = (style: string) => {
+  const handleStyleChange = (style) => {
     const currentStyles = [...filters.styles];
     if (currentStyles.includes(style)) {
       setFilter(

@@ -1,7 +1,7 @@
 import React from "react";
-import { usePhotographerStore } from "@/store";
+import { usePhotographerStore } from "../../store/index.js";
 
-const CityFilter: React.FC = () => {
+const CityFilter = () => {
   const { filters, setFilter } = usePhotographerStore();
 
   const cities = [

@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { usePhotographerStore, useFilteredPhotographers } from "@/store";
-import PhotographerCard from "@/components/PhotographerCard";
-import FilterSidebar from "@/components/filters/FilterSidebar";
-import SearchBar from "@/components/SearchBar";
-import SortOptions from "@/components/SortOptions";
-import Button from "@/components/ui/Button";
+import { usePhotographerStore, useFilteredPhotographers } from "../../store/index.js";
+import PhotographerCard from "../../components/PhotographerCard";
+import FilterSidebar from "../../components/filters/FilterSidebar";
+import SearchBar from "../../components/SearchBar";
+import SortOptions from "../../components/SortOptions";
+import Button from "../../components/ui/Button";
 
 export default function CategoryPage() {
   const { fetchPhotographers, loadMore } = usePhotographerStore();
@@ -70,7 +70,7 @@ export default function CategoryPage() {
 
         <div className="flex flex-col md:flex-row gap-6">
           <div className="md:w-1/4 lg:w-1/5 hidden md:block">
-            <FilterSidebar isOpen={true} onClose={() => {}} />
+            <FilterSidebar isOpen={isFilterOpen} onClose={() => setIsFilterOpen(false)} />
           </div>
 
           <div className="md:w-3/4 lg:w-4/5">

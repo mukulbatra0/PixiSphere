@@ -1,8 +1,8 @@
 import React from "react";
-import { usePhotographerStore } from "@/store";
+import { usePhotographerStore } from "../../store/index.js";
 import StarRating from "../ui/StarRating";
 
-const RatingFilter: React.FC = () => {
+const RatingFilter = () => {
   const { filters, setFilter } = usePhotographerStore();
 
   const ratings = [4, 3, 2, 1];

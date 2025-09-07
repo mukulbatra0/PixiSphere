@@ -2,20 +2,24 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { Photographer } from "@/types";
 import StarRating from "./ui/StarRating";
 import Tag from "./ui/Tag";
 import Button from "./ui/Button";
 
-interface PhotographerCardProps {
-  photographer: Photographer;
-  index: number;
-}
+/**
+ * @typedef {import("../types/index.js").Photographer} Photographer
+ */
 
-const PhotographerCard: React.FC<PhotographerCardProps> = ({
-  photographer,
-  index,
-}) => {
+/**
+ * @typedef {Object} PhotographerCardProps
+ * @property {Photographer} photographer
+ * @property {number} index
+ */
+
+/**
+ * @param {PhotographerCardProps} props
+ */
+const PhotographerCard = ({ photographer, index }) => {
   const { id, name, location, price, rating, tags, profilePic } = photographer;
   const [imgSrc, setImgSrc] = React.useState(
     profilePic && profilePic.trim() !== "" ? profilePic : "/images/stock1.jpg"
@@ -34,8 +38,10 @@ const PhotographerCard: React.FC<PhotographerCardProps> = ({
           src={imgSrc}
           alt={name}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover"
           onError={() => setImgSrc("/images/stock1.jpg")}
+          priority={index < 3}
         />
       </div>
 
@@ -68,7 +74,7 @@ const PhotographerCard: React.FC<PhotographerCardProps> = ({
 
         <div className="flex justify-between items-center mt-4">
           <div className="text-black font-semibold">
-            ₹{price.toLocaleString()}
+            ₹{price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </div>
           <Link href={`/profile/${id}`} passHref>
             <Button variant="outline" size="sm">

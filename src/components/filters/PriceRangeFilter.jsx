@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { usePhotographerStore } from "@/store";
+import { usePhotographerStore } from "../../store/index.js";
 
-const PriceRangeFilter: React.FC = () => {
+const PriceRangeFilter = () => {
   const { filters, setFilter } = usePhotographerStore();
   const [localRange, setLocalRange] = useState(filters.priceRange);
 
@@ -9,19 +9,16 @@ const PriceRangeFilter: React.FC = () => {
     setLocalRange(filters.priceRange);
   }, [filters.priceRange]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
+  const handleChange = (e, index) => {
     const value = parseInt(e.target.value);
-    const newRange = [...localRange] as [number, number];
+    const newRange = [...localRange];
     newRange[index] = value;
     setLocalRange(newRange);
   };
 
   const handleBlur = () => {
     // Ensure min <= max
-    const sortedRange: [number, number] = [
+    const sortedRange = [
       Math.min(...localRange),
       Math.max(...localRange),
     ];

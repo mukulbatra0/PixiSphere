@@ -1,24 +1,26 @@
 import { create } from "zustand";
-import { FilterState, Photographer, SortOption } from "@/types";
 
-interface PhotographerStore {
-  photographers: Photographer[];
-  loading: boolean;
-  error: string | null;
-  filters: FilterState;
-  visibleCount: number;
+/**
+ * @typedef {import("../types/index.js").FilterState} FilterState
+ * @typedef {import("../types/index.js").Photographer} Photographer
+ * @typedef {import("../types/index.js").SortOption} SortOption
+ */
 
-  // Actions
-  fetchPhotographers: () => Promise<void>;
-  setFilter: <K extends keyof FilterState>(
-    key: K,
-    value: FilterState[K]
-  ) => void;
-  resetFilters: () => void;
-  loadMore: () => void;
-}
+/**
+ * @typedef {Object} PhotographerStore
+ * @property {Photographer[]} photographers
+ * @property {boolean} loading
+ * @property {string | null} error
+ * @property {FilterState} filters
+ * @property {number} visibleCount
+ * @property {() => Promise<void>} fetchPhotographers
+ * @property {<K extends keyof FilterState>(key: K, value: FilterState[K]) => void} setFilter
+ * @property {() => void} resetFilters
+ * @property {() => void} loadMore
+ */
 
-const DEFAULT_FILTERS: FilterState = {
+/** @type {FilterState} */
+const DEFAULT_FILTERS = {
   priceRange: [0, 20000],
   minRating: 0,
   styles: [],
@@ -27,7 +29,7 @@ const DEFAULT_FILTERS: FilterState = {
   sortBy: "rating",
 };
 
-export const usePhotographerStore = create<PhotographerStore>((set, get) => ({
+export const usePhotographerStore = create((set, get) => ({
   photographers: [],
   loading: false,
   error: null,
@@ -42,7 +44,7 @@ export const usePhotographerStore = create<PhotographerStore>((set, get) => ({
       const data = await response.json();
       set({ photographers: data, loading: false });
     } catch (error) {
-      set({ error: (error as Error).message, loading: false });
+      set({ error: error.message, loading: false });
     }
   },
 

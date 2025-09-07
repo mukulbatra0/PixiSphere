@@ -1,17 +1,21 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline";
-  size?: "sm" | "md" | "lg";
-  onClick?: () => void;
-  fullWidth?: boolean;
-  type?: "button" | "submit" | "reset";
-  disabled?: boolean;
-}
+/**
+ * @typedef {Object} ButtonProps
+ * @property {React.ReactNode} children
+ * @property {"primary" | "secondary" | "outline"} [variant="primary"]
+ * @property {"sm" | "md" | "lg"} [size="md"]
+ * @property {() => void} [onClick]
+ * @property {boolean} [fullWidth=false]
+ * @property {"button" | "submit" | "reset"} [type="button"]
+ * @property {boolean} [disabled=false]
+ */
 
-const Button: React.FC<ButtonProps> = ({
+/**
+ * @param {ButtonProps} props
+ */
+const Button = ({
   children,
   variant = "primary",
   size = "md",

@@ -1,16 +1,16 @@
 import React from "react";
 
-interface StarRatingProps {
-  rating: number;
-  max?: number;
-  size?: "sm" | "md" | "lg";
-}
+/**
+ * @typedef {Object} StarRatingProps
+ * @property {number} rating
+ * @property {number} [max=5]
+ * @property {"sm" | "md" | "lg"} [size="md"]
+ */
 
-const StarRating: React.FC<StarRatingProps> = ({
-  rating,
-  max = 5,
-  size = "md",
-}) => {
+/**
+ * @param {StarRatingProps} props
+ */
+const StarRating = ({ rating, max = 5, size = "md" }) => {
   const fullStars = Math.floor(rating);
   const hasHalfStar = rating % 1 >= 0.5;
 

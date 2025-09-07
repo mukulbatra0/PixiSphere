@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { usePhotographerStore } from "@/store";
+import { usePhotographerStore } from "../store/index.js";
 
-const SearchBar: React.FC = () => {
+const SearchBar = () => {
   const { filters, setFilter } = usePhotographerStore();
   const [inputValue, setInputValue] = useState(filters.searchQuery);
 

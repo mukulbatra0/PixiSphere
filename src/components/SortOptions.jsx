@@ -1,11 +1,15 @@
 import React from "react";
-import { usePhotographerStore } from "@/store";
-import { SortOption } from "@/types";
+import { usePhotographerStore } from "../store/index.js";
 
-const SortOptions: React.FC = () => {
+/**
+ * @typedef {import("../types/index.js").SortOption} SortOption
+ */
+
+const SortOptions = () => {
   const { filters, setFilter } = usePhotographerStore();
 
-  const options: { value: SortOption; label: string }[] = [
+  /** @type {{ value: SortOption; label: string }[]} */
+  const options = [
     { value: "price-low", label: "Price: Low to High" },
     { value: "price-high", label: "Price: High to Low" },
     { value: "rating", label: "Rating: High to Low" },
@@ -17,7 +21,7 @@ const SortOptions: React.FC = () => {
       <span className="text-sm text-black mr-2">Sort by:</span>
       <select
         value={filters.sortBy}
-        onChange={(e) => setFilter("sortBy", e.target.value as SortOption)}
+        onChange={(e) => setFilter("sortBy", e.target.value)}
         className="p-2 border rounded text-sm bg-white text-black"
       >
         {options.map((option) => (

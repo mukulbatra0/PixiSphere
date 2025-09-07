@@ -1,34 +1,33 @@
 "use client";
 
-import React, { useEffect, useState, use as usePromise } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Photographer } from "@/types";
-import StarRating from "@/components/ui/StarRating";
-import Tag from "@/components/ui/Tag";
-import Button from "@/components/ui/Button";
+import StarRating from "../../../components/ui/StarRating";
+import Tag from "../../../components/ui/Tag";
+import Button from "../../../components/ui/Button";
 
-interface InquiryFormData {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}
+/**
+ * @typedef {import("../../../types/index.js").Photographer} Photographer
+ */
 
-export default function PhotographerProfile({
-  params,
-}: { params: { id: string } } | { params: Promise<{ id: string }> }) {
-  // Support both direct and Promise params for migration compatibility
-  const [resolvedParams, setResolvedParams] = useState<{ id: string } | null>(
-    null
-  );
-  const [photographer, setPhotographer] = useState<Photographer | null>(null);
+/**
+ * @typedef {Object} InquiryFormData
+ * @property {string} name
+ * @property {string} email
+ * @property {string} phone
+ * @property {string} message
+ */
+
+export default function PhotographerProfile({ params }) {
+  const [resolvedParams, setResolvedParams] = useState(null);
+  const [photographer, setPhotographer] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-  const [activeImage, setActiveImage] = useState<string>("");
+  const [error, setError] = useState(null);
+  const [activeImage, setActiveImage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [formData, setFormData] = useState<InquiryFormData>({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
@@ -57,7 +56,7 @@ export default function PhotographerProfile({
           setActiveImage(data.portfolio[0]);
         }
       } catch (err) {
-        setError((err as Error).message);
+        setError(err.message);
       } finally {
         setLoading(false);
       }
@@ -66,14 +65,12 @@ export default function PhotographerProfile({
     fetchPhotographer();
   }, [resolvedParams]);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     // In a real app, you would send this data to your backend
     console.log("Form submitted:", formData);
@@ -150,6 +147,7 @@ export default function PhotographerProfile({
                       src={photographer.profilePic}
                       alt={photographer.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
                     />
                   ) : (
@@ -218,7 +216,7 @@ export default function PhotographerProfile({
                     Starting Price
                   </h3>
                   <p className="text-2xl font-bold text-black">
-                    ₹{photographer.price.toLocaleString()}
+                    ₹{photographer.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                   </p>
                 </div>
 
@@ -261,6 +259,7 @@ export default function PhotographerProfile({
                           src={activeImage || photographer.portfolio[0]}
                           alt="Portfolio"
                           fill
+                          sizes="(max-width: 768px) 100vw, 66vw"
                           className="object-contain"
                         />
                       ) : (
@@ -290,6 +289,7 @@ export default function PhotographerProfile({
                             src={image}
                             alt={`Portfolio ${index + 1}`}
                             fill
+                            sizes="80px"
                             className="object-cover"
                           />
                         ) : (

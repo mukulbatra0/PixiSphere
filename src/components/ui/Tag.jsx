@@ -1,11 +1,15 @@
 import React from "react";
 
-interface TagProps {
-  label: string;
-  color?: "primary" | "secondary" | "accent" | "gray";
-}
+/**
+ * @typedef {Object} TagProps
+ * @property {string} label
+ * @property {"primary" | "secondary" | "accent" | "gray"} [color="gray"]
+ */
 
-const Tag: React.FC<TagProps> = ({ label, color = "gray" }) => {
+/**
+ * @param {TagProps} props
+ */
+const Tag = ({ label, color = "gray" }) => {
   const colorClasses = {
     primary: "bg-primary-50 text-black border-primary-200",
     secondary: "bg-secondary-50 text-black border-secondary-200",

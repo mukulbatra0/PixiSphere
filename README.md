@@ -40,8 +40,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 │   ├── app/                   # Next.js app directory (routing, layout, pages)
 │   ├── components/            # React components (cards, filters, UI)
 │   ├── store/                 # Zustand state management
-│   └── types/                 # TypeScript type definitions
+│   └── types/                 # JSDoc type definitions
 ├── db.json                    # Mock API data for photographers
+├── jsconfig.json              # JavaScript project configuration
 ├── package.json               # Project metadata and scripts
 └── ...
 ```
@@ -64,6 +65,9 @@ Open [http://localhost:3000](http://localhost:3000) in your browser to see the a
 - [Framer Motion](https://www.framer.com/motion/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [json-server](https://github.com/typicode/json-server)
+
+## Type Safety
+This project uses JSDoc comments for type annotations, providing IntelliSense and type checking without TypeScript compilation overhead.
 
 ## License
 This project is for educational/demo purposes only. All images are from free stock sources (Unsplash, etc.).
